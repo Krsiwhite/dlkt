@@ -6,6 +6,7 @@ import time
 import concurrent.futures
 import threading
 import pandas as pd
+from config import Config
 API_KEY = 'sk-ZCcrX9JD8AfdGohshzZKgPgWV9guGZVJfgAOFy4go1Ctpl7Z'
 BASE_URL = "https://api.chatanywhere.tech/v1"
 

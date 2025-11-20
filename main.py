@@ -1,8 +1,7 @@
-import pandas as pd
-df = pd.DataFrame(
-    {
-        "A": [1, 2, 3],
-        "B": [4, 5, 6],
-    }
-)
-print(df)
+from data_loader.kt_loader import MyDataset
+from config import Config
+from data_process.embedding import getEmbedding
+from model.my_model import device, TextAKT3PL
+
+if __name__ == "__main__":
+    

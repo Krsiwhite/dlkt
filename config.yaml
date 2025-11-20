@@ -1,8 +1,21 @@
 dataset:
   historyLenth: 200
-  name: NIPS
+  dataPath: dataset
+  step: 50
+  minRate: 0.5
+  name: 
+    - NIPS2020
 
 training:
   bathSize: 128
   lr: 0.001
 
+model:
+  inputDim: 256
+  modelDim: 128
+  baseScale: 0.2
+
+api:
+  apiKey: 'sk-ZCcrX9JD8AfdGohshzZKgPgWV9guGZVJfgAOFy4go1Ctpl7Z'
+  baseUrl: "https://api.chatanywhere.tech/v1"
+ 
