@@ -136,7 +136,9 @@ class TransformerLayer(nn.Module):
         
         # 计算注意力
         query2 = self.masked_attn_head(query, key, values, mask=src_mask, zero_pad=(mask==0))
-
+        # 注意力门控
+     #   gate_score = torch.sigmoid(self.gate_proj(query2))
+     #   query2 = query2 * gate_score
         # 残差连接 + LayerNorm
         query = query + self.dropout1((query2))
         query = self.layer_norm1(query)
@@ -225,7 +227,7 @@ class SemanticIRTEncoder(nn.Module):
         # B. 提取问题特征
         q_feat = self.q_shared(question_emb)
         
-        # C. 生成 IRT 参数
+        # C. 生成 IRT 参数   这里有改动
         mu = torch.tanh(self.head_mu(q_feat)) * 3.0         # Range approx [-3, 3]
         alpha = F.softplus(self.head_alpha(q_feat)) + 0.1   # Range [0.1, inf)
         guess = torch.sigmoid(self.head_guess(q_feat))      # (0, 1)
@@ -248,7 +250,7 @@ class SemanticEmbeddingLayer(nn.Module):
     def forward(self, c_vec, q_feat, mu, alpha, guess, responses):
         # responses: [Batch, Seq, 1]
         
-        # --- 1. 构造问题嵌入 x_t ---
+        # --- 1. 构造问题嵌入 x_t --- 这里有改动
         # x_t = 概念 + 难度 * 区分度 * 题目语义偏差
         x_t = c_vec + mu * alpha * q_feat 
         
@@ -265,6 +267,7 @@ class SemanticEmbeddingLayer(nn.Module):
         final_scale = self.base_scale + (1 - self.base_scale) * beta * alpha
         
         y_t = c_vec + final_scale * (g_vec + q_feat)
+        #y_t = c_vec + final_scale * g_vec
         
         return self.ln(x_t), self.ln(y_t)
 
@@ -325,9 +328,6 @@ class LearnablePositionalEmbedding(nn.Module):
         positions = torch.arange(seq_len, device=x.device).unsqueeze(0)
         return self.pe(positions)
 
-
 if __name__ == "__main__":
     sem = TextAKT3PL(256, 128, 0.2,1, 4, 0.1, True, 4).to(device)
     print(sem(torch.randn([1, 4, 256]).to(device), torch.randn([1, 4, 256]).to(device), torch.randint(0, 2, [1,4,1]).to(device)))
-    
-    

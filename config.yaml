@@ -1,19 +1,23 @@
 dataset:
   historyLenth: 200
   dataPath: dataset
-  step: 50
-  minRate: 0.5
+  step: 1
+  minRate: 0
   name: 
     - NIPS2020
 
 training:
-  bathSize: 128
-  lr: 0.001
+  batchSize: 256
+  lr: 0.0001
+  epochs: 500
 
 model:
   inputDim: 256
   modelDim: 128
   baseScale: 0.2
+  blocks: 4
+  heads: 4
+  dropout: 0.1
 
 api:
   apiKey: 'sk-ZCcrX9JD8AfdGohshzZKgPgWV9guGZVJfgAOFy4go1Ctpl7Z'
