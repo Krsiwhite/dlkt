@@ -17,7 +17,7 @@ model:
   baseScale: 0.2
   blocks: 4
   heads: 4
-  dropout: 0.1
+  dropout: 0.3
 
 api:
   apiKey: 'sk-ZCcrX9JD8AfdGohshzZKgPgWV9guGZVJfgAOFy4go1Ctpl7Z'
