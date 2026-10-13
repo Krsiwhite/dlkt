@@ -10,3 +10,15 @@ dataset/XES3G5M
 
 # Virtual environments
 .venv
+
+# Local experiments and credentials
+.env
+.env.*
+!.env.example
+runs/
+artifacts/
+*.pt
+*.pth
+*.npz
+*.log
+.cache/

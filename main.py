@@ -5,9 +5,18 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import tqdm
+import numpy as np
+import random
 from torchmetrics import MetricCollection
 from torchmetrics.classification import BinaryAUROC, BinaryAccuracy
 from loss.my_loss import SmoothBCE
+
+def setup_seed(seed):
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    np.random.seed(seed)
+    random.seed(seed)
+
 
 def eval(model, test_loader, device):
     model.eval()
@@ -93,7 +102,7 @@ def train(model, train_loader, optimizer, criterion, epochs, test_loader, schedu
             print(f"Current LR: {current_lr:.6f}")
 
         # 评估 
-        if (epoch + 1) % 15 == 0: 
+        if (epoch + 1) % 1 == 0: 
             auc = eval(model, test_loader, device)
             if auc > best_auc:
                 best_auc = auc
@@ -102,6 +111,7 @@ def train(model, train_loader, optimizer, criterion, epochs, test_loader, schedu
 
 
 if __name__ == "__main__":
+    setup_seed(42)
     name = Config.dataset.name[0]
 
     ed = EmbeddingData("NIPS2020", Config)
@@ -112,7 +122,7 @@ if __name__ == "__main__":
                        True, Config.dataset.historyLenth+1).to(device)
     
     
-    optimizer = optim.AdamW(model.parameters(), lr=Config.training.lr, weight_decay=1e-5)
+    optimizer = optim.AdamW(model.parameters(), lr=Config.training.lr, weight_decay=1e-4)
     scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=Config.training.epochs)
     criterion = SmoothBCE()
         

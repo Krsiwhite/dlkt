@@ -7,7 +7,7 @@ import concurrent.futures
 import threading
 import pandas as pd
 from config import Config
-API_KEY = 'sk-ZCcrX9JD8AfdGohshzZKgPgWV9guGZVJfgAOFy4go1Ctpl7Z'
+API_KEY = os.environ.get("OPENAI_API_KEY", "")
 BASE_URL = "https://api.chatanywhere.tech/v1"
 
 # 设置包含图片的目录路径

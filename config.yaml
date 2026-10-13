@@ -7,19 +7,19 @@ dataset:
     - NIPS2020
 
 training:
-  batchSize: 256
-  lr: 0.0001
-  epochs: 500
+  batchSize: 128
+  lr: 0.0005
+  epochs: 100
 
 model:
   inputDim: 256
   modelDim: 128
   baseScale: 0.2
-  blocks: 4
-  heads: 4
-  dropout: 0.3
+  blocks: 2
+  heads: 8
+  dropout: 0
 
 api:
-  apiKey: 'sk-ZCcrX9JD8AfdGohshzZKgPgWV9guGZVJfgAOFy4go1Ctpl7Z'
+  apiKey: ""
   baseUrl: "https://api.chatanywhere.tech/v1"
  

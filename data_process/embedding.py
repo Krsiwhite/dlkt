@@ -3,7 +3,7 @@ import json
 import os
 import tqdm
 client = OpenAI(
-    api_key = 'sk-ZCcrX9JD8AfdGohshzZKgPgWV9guGZVJfgAOFy4go1Ctpl7Z',
+    api_key = os.environ.get("OPENAI_API_KEY", ""),
     base_url = "https://api.chatanywhere.tech/v1"
 )
 

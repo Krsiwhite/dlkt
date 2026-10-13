@@ -191,34 +191,43 @@ class Architecture(nn.Module):
         return h
 
 
-def Adopter(input_dim, model_dim):
-    return  nn.Sequential(
-                nn.Linear(input_dim, model_dim * 2),
-                nn.GELU(),
-                nn.Linear(model_dim * 2, model_dim),
-                nn.LayerNorm(model_dim)
-            )
+def Adopter(input_dim, model_dim, dropout=0):
+   # return  nn.Sequential(
+   #             nn.Linear(input_dim, model_dim * 2),
+   #             nn.GELU(),
+   #             nn.Linear(model_dim * 2, model_dim),
+   #             nn.LayerNorm(model_dim)
+   #         )
+
+
+    return        nn.Sequential(
+                        nn.Linear(input_dim, input_dim * 2),
+                        nn.ReLU(), nn.Dropout(dropout),
+                        nn.Linear(input_dim * 2, input_dim * 2),
+                        nn.ReLU(), nn.Dropout(dropout),
+                        nn.Linear(input_dim * 2, model_dim)
+                    )
 
 class SemanticIRTEncoder(nn.Module):
-    def __init__(self, input_dim=256, model_dim=128):
+    def __init__(self, seq_len, n_heads, input_dim=256, model_dim=128):
         super().__init__()
 
         self.concept_proj = Adopter(input_dim, model_dim)
         
         self.q_shared = Adopter(input_dim, model_dim)
-        
+        self.pos_encoder = LearnablePositionalEmbedding(model_dim, seq_len)
+        self.mix_diff = TransformerLayer(d_model=model_dim, d_feature=int(model_dim/n_heads), d_ff=model_dim*2, dropout=0.3, n_heads=n_heads, kq_same=False)
+
         # 3. IRT 参数头 (Heads)
         # 3.1 难度标量 mu (Difficulty)
-        self.head_mu = nn.Linear(model_dim, 1)
+        self.head_mu = Adopter(model_dim, 1)
         
         # 3.2 区分度标量 a (Discrimination) - 必须大于0
-        self.head_alpha = nn.Linear(model_dim, 1)
+        self.head_alpha = Adopter(model_dim, 1)
+        
         
         # 3.3 猜测概率 c (Guessing) - 范围 [0, 1]
-        self.head_guess = nn.Linear(model_dim, 1)
-        
-        # 3.4 语义偏差向量 offset (类似 AKT 的 d_{ct} 作用，但来自文本)
-        self.head_offset = nn.Linear(model_dim, model_dim)
+        self.head_guess = Adopter(model_dim, 1)
 
     def forward(self, concept_emb, question_emb):
 
@@ -226,13 +235,21 @@ class SemanticIRTEncoder(nn.Module):
         
         # B. 提取问题特征
         q_feat = self.q_shared(question_emb)
+
+        f_vec = c_vec+q_feat
+        f_vec += self.pos_encoder(f_vec)
+        f_vec = self.mix_diff(mask=1, query=f_vec, key=f_vec, values=f_vec)
+        
         
         # C. 生成 IRT 参数   这里有改动
-        mu = torch.tanh(self.head_mu(q_feat)) * 3.0         # Range approx [-3, 3]
-        alpha = F.softplus(self.head_alpha(q_feat)) + 0.1   # Range [0.1, inf)
-        guess = torch.sigmoid(self.head_guess(q_feat))      # (0, 1)
+        #        fix use q+c
+        mu = torch.tanh(self.head_mu(f_vec)) * 3.0         # Range approx [-3, 3]
+        #        fix use q+c
+        alpha = F.softplus(self.head_alpha(f_vec)) + 0.1   # Range [0.1, inf)
+        guess = torch.sigmoid(self.head_guess(f_vec))      # (0, 1)
         
-        return c_vec, q_feat, mu, alpha, guess
+        
+        return f_vec, q_feat, mu, alpha, guess
 
 
 class SemanticEmbeddingLayer(nn.Module):
@@ -283,12 +300,12 @@ class TextAKT3PL(nn.Module):
         self.base_scale = base_scale
         
 
-        self.extractor = SemanticIRTEncoder(self.input_dim, self.model_dim)
+        self.extractor = SemanticIRTEncoder(seq_len, n_heads, self.input_dim, self.model_dim)
         self.embedding_layer = SemanticEmbeddingLayer(self.model_dim, self.base_scale)
         self.pos_encoder = LearnablePositionalEmbedding(model_dim, seq_len)
         self.akt_encoder = Architecture(n_block, model_dim, int(model_dim/n_heads), 4 * model_dim, n_heads, dropout, kq_same)
 
-        self.ability_proj = nn.Linear(self.model_dim, 1) 
+        self.ability_proj = Adopter(self.model_dim, 1)
 
     def forward(self, concept_emb, question_emb, responses):
         # 1. 提取参数
@@ -327,6 +344,41 @@ class LearnablePositionalEmbedding(nn.Module):
         seq_len = x.size(1)
         positions = torch.arange(seq_len, device=x.device).unsqueeze(0)
         return self.pe(positions)
+
+class CosinePositionalEmbedding(nn.Module):
+    """
+    简单示例：用 sin / cos 函数构造的位置编码，常见于Transformer。
+    这里叫 “CosinePositionalEmbedding” 只是个命名示例，也包含了 sin 分量。
+    你也可以根据需求改成纯 cos 或其他自定义函数。
+    """
+    def __init__(self, d_model, max_len=5000):
+        super(CosinePositionalEmbedding, self).__init__()
+        # 创建一个 [max_len, d_model] 的位置编码矩阵 pe
+        pe = torch.zeros(max_len, d_model)
+        position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)  # shape=[max_len,1]
+        # 计算 dim=2 的 div_term: 频率递增，常规Transformer做法
+        div_term = torch.exp(
+            torch.arange(0, d_model, 2).float() * (-math.log(10000.0) / d_model)
+        )
+        # 偶数维用 sin，奇数维用 cos
+        pe[:, 0::2] = torch.sin(position * div_term)
+        pe[:, 1::2] = torch.cos(position * div_term)
+
+        # shape: [1, max_len, d_model]
+        pe = pe.unsqueeze(0)
+        # 注册为buffer，意味着在模型保存/加载时自动处理，但不会成为可训练参数
+        self.register_buffer('pe', pe)
+
+    def forward(self, x):
+        """
+        x: [batch_size, seq_len, d_model] 或 [batch_size, seq_len]
+        这里仅用 seq_len 来截取相应长度的编码并返回。
+        """
+        seq_len = x.size(1)
+        # 注意 self.pe[:, :seq_len, :] 只能取到序列长度之内的位置编码
+        # shape=[1, seq_len, d_model]
+        return self.pe[:, :seq_len, :]
+
 
 if __name__ == "__main__":
     sem = TextAKT3PL(256, 128, 0.2,1, 4, 0.1, True, 4).to(device)
