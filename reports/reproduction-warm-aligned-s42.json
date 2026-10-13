@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "verification": "saved_checkpoint_test_inference_only",
+  "created_at_utc": "2026-10-13T03:05:22.560523+00:00",
+  "run_dir": "/mnt/d/doc/knowledge_trace_graduation_project/dlkt-research/runs/round1-s42/warm-aligned-s42",
+  "data_root": "/mnt/d/doc/knowledge_trace_graduation_project/dlkt-research/dataset/NIPS2020",
+  "protocol": "warm",
+  "variant": "aligned",
+  "seed": 42,
+  "best_epoch": 33,
+  "batch_size": 128,
+  "sequence_length": 201,
+  "checkpoint_sha256": "0f7c6aabb4a0973a125ca5562eebbd119d09af067dd76c689de95e2e3db1083e",
+  "test_predictions_file_sha256": "1b710a6ee5efd729661c354ce03989b6623ef453fb5855a7a7d4c865eebafad1",
+  "data_sha256": {
+    "used.txt": "f25f6db4a9ff2eae6f11e47a5b4b1181e0f7a65b616e6eb6dd14d105f9270de2",
+    "used.json": "4ab74e5fc1108f259d7a04deb4f2b0740762df01c1c7d333cc85761dd894aea0"
+  },
+  "source_sha256": {
+    "experiments/__init__.py": "3bdf13ca7c082b6fbc7f1d894ec30775d783dc7ed43b7d9334c73444cd2c89b6",
+    "experiments/data.py": "f88910d12dbc63f5c8d5a1bc79a8f45529425a9ae70e26bbed30115173705229",
+    "experiments/models.py": "869c2546a62832935e2210a6d70822ac96b4d122a5d605735f01a42339014335",
+    "experiments/run.py": "0303678a16bf0b7f850a76b5c593342fcafbc7da152f82b1f176bbaac26a6ef8",
+    "experiments/teacher.py": "e3f0eaff36f362fc492a8b575c5faddd1736ffe68b20dd707eca8c90471a4726",
+    "model/my_model.py": "3b924f6dabceee1bbc1b906ac9f05908a0d236ebf0eb369e454bc35ac3969144"
+  },
+  "protocol_sha256": "45502c7c3ac28531874ebf11336749b9f9aada2f81d10449e90ba36102f63637",
+  "audits": {
+    "source_hashes_match": true,
+    "data_hashes_match": true,
+    "protocol_hash_matches": true,
+    "checkpoint_config_matches": true,
+    "checkpoint_hash_matches": true,
+    "test_target_identities_match": true,
+    "stored_predictions_match_summary_metrics": true,
+    "original_artifacts_modified": false
+  },
+  "predictions": {
+    "count": 415735,
+    "exact_equal": true,
+    "bitwise_equal": true,
+    "different_count": 0,
+    "max_absolute_difference": 0.0,
+    "mean_absolute_difference": 0.0,
+    "reference_dtype": "float32",
+    "reproduced_dtype": "float32"
+  },
+  "reference_metrics": {
+    "auc": 0.7965810953058701,
+    "acc": 0.7270063862797215,
+    "nll": 0.5374272194817787,
+    "brier": 0.18170410746498586,
+    "ece15": 0.016121055551804923,
+    "count": 415735
+  },
+  "reproduced_metrics": {
+    "auc": 0.7965810953058701,
+    "acc": 0.7270063862797215,
+    "nll": 0.5374272194817787,
+    "brier": 0.18170410746498586,
+    "ece15": 0.016121055551804923,
+    "count": 415735
+  },
+  "metric_differences": {
+    "auc": 0.0,
+    "acc": 0.0,
+    "nll": 0.0,
+    "brier": 0.0,
+    "ece15": 0.0
+  },
+  "environment": {
+    "python": "3.12.3",
+    "torch": "2.9.1+rocm7.2.1.gitff65f5bc",
+    "numpy": "1.26.4",
+    "device": "cuda",
+    "gpu": "AMD Radeon RX 9070 XT",
+    "deterministic_algorithms": false
+  },
+  "seconds": 6.687636967999879,
+  "scope": "Checks saved-checkpoint inference. Does not repeat optimization or establish bitwise training reproducibility."
+}

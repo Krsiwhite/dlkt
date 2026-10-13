@@ -29,6 +29,10 @@ Direction 1's controlled contrast is `semantic_mlp` versus `decoupled`. `origina
 - Two-batch, one-epoch smoke runs validate execution only; their metrics are excluded from results.
 - No ensemble, test-time mixing, new semantic embeddings, pretrained language-model fine-tuning, or extra architecture search in this round.
 
+### Added replication, recorded after seed-42 results
+
+The first seed showed opposite warm/cold directions for `semantic_mlp` versus `decoupled`, so the same prespecified additional seeds (3407 and 2026) are also run for `semantic_mlp` on both protocols in `runs/round1-mlp-repeat`. This adds four runs (20 total). It is an explicitly post-result replication extension, not part of the original 16-run budget. Architecture, split, hyperparameters, early stopping, and reporting rules stay fixed, and all seeds are reported. The original model remains a single-seed reference. This supplies paired three-seed descriptions for both directions without selecting a winning seed or tuning to test results.
+
 ## Independent item-parameter diagnostic
 
 After the planned models finish, estimate a separate Rasch reference from held-out test students for descriptive parameter evaluation only. In the cold protocol, fit this reference on their train-item and test-cold-item responses, excluding validation-cold items, then compare semantic difficulty rankings on the 143 test-cold items. These response-derived reference values are never model inputs, alignment supervision, checkpoint-selection criteria, or hyperparameter-selection criteria. Report Spearman and Pearson correlations on all observed evaluation items, with a clearly labelled optional >=30-response subset. The reference is a noisy, model-based proxy; correlation does not establish true psychological difficulty. This diagnostic was specified before the first cold-model test result was available.
@@ -39,6 +43,7 @@ After the planned models finish, estimate a separate Rasch reference from held-o
 cd /mnt/d/doc/knowledge_trace_graduation_project/dlkt-research
 /home/ml/.venvs/pytorch/bin/python -u -m experiments.run --output runs/round1-s42
 /home/ml/.venvs/pytorch/bin/python -u -m experiments.run --output runs/round1-repeat --variants decoupled aligned --seeds 3407 2026
+/home/ml/.venvs/pytorch/bin/python -u -m experiments.run --output runs/round1-mlp-repeat --variants semantic_mlp --seeds 3407 2026
 ```
 
 Weights, per-student prediction arrays, and full training outputs stay local under ignored `runs/`. Aggregate results, source and methodology are committed to GitHub. Original `dlkt` and `dlkt-best-806453` are preserved.

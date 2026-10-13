@@ -1,0 +1,11 @@
+{
+  "original_dlkt": {
+    "files_checked": 15,
+    "mismatches": []
+  },
+  "retained_806453": {
+    "files_checked": 124,
+    "mismatches": []
+  },
+  "scope": "Compared original tracked files to pre-experiment hashes and retained package to its existing manifest. No training or rewrite of preserved folders."
+}

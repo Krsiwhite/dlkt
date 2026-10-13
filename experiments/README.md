@@ -48,7 +48,9 @@
 python -m unittest discover -s tests -v
 python -u -m experiments.run --output runs/round1-s42
 python -u -m experiments.run --output runs/round1-repeat --variants decoupled aligned --seeds 3407 2026
-python tools/summarize_experiments.py --roots runs/round1-s42 runs/round1-repeat --output reports/round1
+python -u -m experiments.run --output runs/round1-mlp-repeat --variants semantic_mlp --seeds 3407 2026
+python tools/summarize_experiments.py --roots runs/round1-s42 runs/round1-repeat runs/round1-mlp-repeat --output reports/round1
+python tools/evaluate_item_difficulty.py --roots runs/round1-s42 runs/round1-repeat runs/round1-mlp-repeat --data-root dataset/NIPS2020 --output reports/difficulty-validity.json
 python tools/reproduce_experiment.py --run-dir runs/round1-s42/warm-aligned-s42 --data-root dataset/NIPS2020 --device cuda
 ```
 

@@ -1,0 +1,560 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-10-13T03:37:45.373686+00:00",
+  "diagnostic_source_sha256": "ce045b1fe40c68989b7a783227c3b01a0a2968f20881100b1fd9489eddd23e2d",
+  "purpose": "Exploratory posthoc difficulty validity; independent held-out Rasch proxy, not psychological ground truth.",
+  "selection_policy": "All runs complete before diagnostic; reference labels never select or update any model.",
+  "new_prediction_forward_passes": 0,
+  "correlation_weighting": "Equal item weighting; tie-aware average-rank Spearman.",
+  "between_seed_sd": "Sample SD (ddof=1), not a confidence interval over sampled data.",
+  "references": [
+    {
+      "protocol": "cold",
+      "role": "exploratory_posthoc_heldout_reference_only",
+      "fitting_policy": "Held-out test students; train items plus test-cold items; validation-cold items excluded.",
+      "correlation_item_policy": "Only test-cold items; these had zero response supervision in model training.",
+      "n_requested_items": 143,
+      "n_observed_requested_items": 143,
+      "n_unobserved_requested_items": 0,
+      "n_reliable_requested_items_n_ge_30": 120,
+      "input_data_sha256": {
+        "used.txt": "f25f6db4a9ff2eae6f11e47a5b4b1181e0f7a65b616e6eb6dd14d105f9270de2",
+        "used.json": "4ab74e5fc1108f259d7a04deb4f2b0740762df01c1c7d333cc85761dd894aea0"
+      },
+      "fit": {
+        "logistic_slope": 1.0,
+        "ability_constraint": "mean_reference_student_ability_zero",
+        "n_students": 1476,
+        "n_items": 948,
+        "n_observed_items": 806,
+        "n_observations": 356336,
+        "prior_strength": 1.0,
+        "reliability_prior": 20.0,
+        "steps_requested": 300,
+        "steps_run": 17,
+        "converged": true,
+        "last_parameter_change": 7.096990814091529e-06,
+        "raw_difficulty_mean": -0.11013353172477516,
+        "raw_difficulty_std": 0.7568798562087993,
+        "target_standardization": "unweighted_mean_zero_population_std_one_on_observed_items",
+        "device": "cpu",
+        "interpretation": "Model-based behavior supervision; not ground-truth psychological parameters.",
+        "estimator": "regularized_rasch_1pl",
+        "reference_records_sha256": "437c6089dd849855d203b84af9be5d4997df5aa00c9fb036611f39fa87183094",
+        "reference_fit_nll": 0.556343394958538
+      },
+      "reference_targets_exported": false,
+      "reference_used_for_training_or_model_selection": false
+    },
+    {
+      "protocol": "warm",
+      "role": "exploratory_posthoc_heldout_reference_only",
+      "fitting_policy": "Held-out test students; all items.",
+      "correlation_item_policy": "All items observed among held-out test students.",
+      "n_requested_items": 948,
+      "n_observed_requested_items": 948,
+      "n_unobserved_requested_items": 0,
+      "n_reliable_requested_items_n_ge_30": 805,
+      "input_data_sha256": {
+        "used.txt": "f25f6db4a9ff2eae6f11e47a5b4b1181e0f7a65b616e6eb6dd14d105f9270de2",
+        "used.json": "4ab74e5fc1108f259d7a04deb4f2b0740762df01c1c7d333cc85761dd894aea0"
+      },
+      "fit": {
+        "logistic_slope": 1.0,
+        "ability_constraint": "mean_reference_student_ability_zero",
+        "n_students": 1476,
+        "n_items": 948,
+        "n_observed_items": 948,
+        "n_observations": 415735,
+        "prior_strength": 1.0,
+        "reliability_prior": 20.0,
+        "steps_requested": 300,
+        "steps_run": 18,
+        "converged": true,
+        "last_parameter_change": 4.7511476644633925e-06,
+        "raw_difficulty_mean": -0.11206285343257998,
+        "raw_difficulty_std": 0.758068741105089,
+        "target_standardization": "unweighted_mean_zero_population_std_one_on_observed_items",
+        "device": "cpu",
+        "interpretation": "Model-based behavior supervision; not ground-truth psychological parameters.",
+        "estimator": "regularized_rasch_1pl",
+        "reference_records_sha256": "40dd04483bb16f8790846703925c42f35dd1d7e74b71dce2696af1ebfd225457",
+        "reference_fit_nll": 0.5562774463315536
+      },
+      "reference_targets_exported": false,
+      "reference_used_for_training_or_model_selection": false
+    }
+  ],
+  "runs": [
+    {
+      "suite": "round1-s42",
+      "run": "cold-aligned-s42",
+      "protocol": "cold",
+      "variant": "aligned",
+      "seed": 42,
+      "checkpoint_sha256": "2460eb458dddac74cb3d2affa9a512ff0096d68fb7482efd11e6cf77781bec17",
+      "item_parameters_sha256": "3431a74d5e353595239df36075023e185a98516e5cb350ceb68a0aeeee4d2aab",
+      "source_sha256": {
+        "experiments/__init__.py": "3bdf13ca7c082b6fbc7f1d894ec30775d783dc7ed43b7d9334c73444cd2c89b6",
+        "experiments/data.py": "f88910d12dbc63f5c8d5a1bc79a8f45529425a9ae70e26bbed30115173705229",
+        "experiments/models.py": "869c2546a62832935e2210a6d70822ac96b4d122a5d605735f01a42339014335",
+        "experiments/run.py": "0303678a16bf0b7f850a76b5c593342fcafbc7da152f82b1f176bbaac26a6ef8",
+        "experiments/teacher.py": "e3f0eaff36f362fc492a8b575c5faddd1736ffe68b20dd707eca8c90471a4726",
+        "model/my_model.py": "3b924f6dabceee1bbc1b906ac9f05908a0d236ebf0eb369e454bc35ac3969144"
+      },
+      "all_observed_items": {
+        "n_items": 143,
+        "pearson": 0.497070127242966,
+        "spearman": 0.494525382706361
+      },
+      "reliable_items_n_ge_30": {
+        "n_items": 120,
+        "pearson": 0.502165664517278,
+        "spearman": 0.4988818667963054
+      }
+    },
+    {
+      "suite": "round1-repeat",
+      "run": "cold-aligned-s2026",
+      "protocol": "cold",
+      "variant": "aligned",
+      "seed": 2026,
+      "checkpoint_sha256": "31c727a248ebdbd5b81c500942df0abcff7176afd6f49b972ce4769bc184931a",
+      "item_parameters_sha256": "7c46891e88517ab5271c5d1883e90a068727b0dc98dba845497fa90c6539f8e9",
+      "source_sha256": {
+        "experiments/__init__.py": "3bdf13ca7c082b6fbc7f1d894ec30775d783dc7ed43b7d9334c73444cd2c89b6",
+        "experiments/data.py": "f88910d12dbc63f5c8d5a1bc79a8f45529425a9ae70e26bbed30115173705229",
+        "experiments/models.py": "869c2546a62832935e2210a6d70822ac96b4d122a5d605735f01a42339014335",
+        "experiments/run.py": "0303678a16bf0b7f850a76b5c593342fcafbc7da152f82b1f176bbaac26a6ef8",
+        "experiments/teacher.py": "e3f0eaff36f362fc492a8b575c5faddd1736ffe68b20dd707eca8c90471a4726",
+        "model/my_model.py": "3b924f6dabceee1bbc1b906ac9f05908a0d236ebf0eb369e454bc35ac3969144"
+      },
+      "all_observed_items": {
+        "n_items": 143,
+        "pearson": 0.48145419933393596,
+        "spearman": 0.46901957567139835
+      },
+      "reliable_items_n_ge_30": {
+        "n_items": 120,
+        "pearson": 0.48959397087613793,
+        "spearman": 0.48295714980206966
+      }
+    },
+    {
+      "suite": "round1-repeat",
+      "run": "cold-aligned-s3407",
+      "protocol": "cold",
+      "variant": "aligned",
+      "seed": 3407,
+      "checkpoint_sha256": "9fbed17af065486f7f9ada9e5ba1d6f9eb3c9a5fab9d2b1c57849497b22a7f9e",
+      "item_parameters_sha256": "5749b20276e3a855718aa68a283c92b597d7d96edfcf9ac67bdf1c45f94c2318",
+      "source_sha256": {
+        "experiments/__init__.py": "3bdf13ca7c082b6fbc7f1d894ec30775d783dc7ed43b7d9334c73444cd2c89b6",
+        "experiments/data.py": "f88910d12dbc63f5c8d5a1bc79a8f45529425a9ae70e26bbed30115173705229",
+        "experiments/models.py": "869c2546a62832935e2210a6d70822ac96b4d122a5d605735f01a42339014335",
+        "experiments/run.py": "0303678a16bf0b7f850a76b5c593342fcafbc7da152f82b1f176bbaac26a6ef8",
+        "experiments/teacher.py": "e3f0eaff36f362fc492a8b575c5faddd1736ffe68b20dd707eca8c90471a4726",
+        "model/my_model.py": "3b924f6dabceee1bbc1b906ac9f05908a0d236ebf0eb369e454bc35ac3969144"
+      },
+      "all_observed_items": {
+        "n_items": 143,
+        "pearson": 0.5112292436460604,
+        "spearman": 0.5024048918788675
+      },
+      "reliable_items_n_ge_30": {
+        "n_items": 120,
+        "pearson": 0.520288322412589,
+        "spearman": 0.512063337731787
+      }
+    },
+    {
+      "suite": "round1-s42",
+      "run": "cold-decoupled-s42",
+      "protocol": "cold",
+      "variant": "decoupled",
+      "seed": 42,
+      "checkpoint_sha256": "3dbb1e9679b11ebc335e0bbfca4180828d7b7b4ebb1376413434b5b9fbc9d46b",
+      "item_parameters_sha256": "ae68eae0a034cd662b21462bf44b491cbfe294b56ee30c35c24ee412bd2d5798",
+      "source_sha256": {
+        "experiments/__init__.py": "3bdf13ca7c082b6fbc7f1d894ec30775d783dc7ed43b7d9334c73444cd2c89b6",
+        "experiments/data.py": "f88910d12dbc63f5c8d5a1bc79a8f45529425a9ae70e26bbed30115173705229",
+        "experiments/models.py": "869c2546a62832935e2210a6d70822ac96b4d122a5d605735f01a42339014335",
+        "experiments/run.py": "0303678a16bf0b7f850a76b5c593342fcafbc7da152f82b1f176bbaac26a6ef8",
+        "experiments/teacher.py": "e3f0eaff36f362fc492a8b575c5faddd1736ffe68b20dd707eca8c90471a4726",
+        "model/my_model.py": "3b924f6dabceee1bbc1b906ac9f05908a0d236ebf0eb369e454bc35ac3969144"
+      },
+      "all_observed_items": {
+        "n_items": 143,
+        "pearson": 0.46682813277778307,
+        "spearman": 0.45901424058672596
+      },
+      "reliable_items_n_ge_30": {
+        "n_items": 120,
+        "pearson": 0.47755023750386055,
+        "spearman": 0.4741648725605946
+      }
+    },
+    {
+      "suite": "round1-repeat",
+      "run": "cold-decoupled-s2026",
+      "protocol": "cold",
+      "variant": "decoupled",
+      "seed": 2026,
+      "checkpoint_sha256": "93a8611b086f2e010e791b268ff9226600d3577b50d4c8f6f530b772f539a1b4",
+      "item_parameters_sha256": "2dafd095085710b4d55e1c3879a511757065428979c947ac04de3533428d3b7b",
+      "source_sha256": {
+        "experiments/__init__.py": "3bdf13ca7c082b6fbc7f1d894ec30775d783dc7ed43b7d9334c73444cd2c89b6",
+        "experiments/data.py": "f88910d12dbc63f5c8d5a1bc79a8f45529425a9ae70e26bbed30115173705229",
+        "experiments/models.py": "869c2546a62832935e2210a6d70822ac96b4d122a5d605735f01a42339014335",
+        "experiments/run.py": "0303678a16bf0b7f850a76b5c593342fcafbc7da152f82b1f176bbaac26a6ef8",
+        "experiments/teacher.py": "e3f0eaff36f362fc492a8b575c5faddd1736ffe68b20dd707eca8c90471a4726",
+        "model/my_model.py": "3b924f6dabceee1bbc1b906ac9f05908a0d236ebf0eb369e454bc35ac3969144"
+      },
+      "all_observed_items": {
+        "n_items": 143,
+        "pearson": 0.4355860399668035,
+        "spearman": 0.4191365371339935
+      },
+      "reliable_items_n_ge_30": {
+        "n_items": 120,
+        "pearson": 0.44984222995846296,
+        "spearman": 0.44246822696020566
+      }
+    },
+    {
+      "suite": "round1-repeat",
+      "run": "cold-decoupled-s3407",
+      "protocol": "cold",
+      "variant": "decoupled",
+      "seed": 3407,
+      "checkpoint_sha256": "5b03b6985175e87e65eb2337ffab448ad326cbacf79e85adf351de22f4ef7585",
+      "item_parameters_sha256": "d2040dcacd7f1e765c0bc1d6fde1ee0071eface0725274b0b20d376ce29bbff9",
+      "source_sha256": {
+        "experiments/__init__.py": "3bdf13ca7c082b6fbc7f1d894ec30775d783dc7ed43b7d9334c73444cd2c89b6",
+        "experiments/data.py": "f88910d12dbc63f5c8d5a1bc79a8f45529425a9ae70e26bbed30115173705229",
+        "experiments/models.py": "869c2546a62832935e2210a6d70822ac96b4d122a5d605735f01a42339014335",
+        "experiments/run.py": "0303678a16bf0b7f850a76b5c593342fcafbc7da152f82b1f176bbaac26a6ef8",
+        "experiments/teacher.py": "e3f0eaff36f362fc492a8b575c5faddd1736ffe68b20dd707eca8c90471a4726",
+        "model/my_model.py": "3b924f6dabceee1bbc1b906ac9f05908a0d236ebf0eb369e454bc35ac3969144"
+      },
+      "all_observed_items": {
+        "n_items": 143,
+        "pearson": 0.4575898981875684,
+        "spearman": 0.44539746379798806
+      },
+      "reliable_items_n_ge_30": {
+        "n_items": 120,
+        "pearson": 0.4793650265309572,
+        "spearman": 0.47397735953885695
+      }
+    },
+    {
+      "suite": "round1-s42",
+      "run": "warm-aligned-s42",
+      "protocol": "warm",
+      "variant": "aligned",
+      "seed": 42,
+      "checkpoint_sha256": "0f7c6aabb4a0973a125ca5562eebbd119d09af067dd76c689de95e2e3db1083e",
+      "item_parameters_sha256": "3f3b0e33fe3b3f0b439fc5676f612b199360cba1555fff7ef7854633efd71ec6",
+      "source_sha256": {
+        "experiments/__init__.py": "3bdf13ca7c082b6fbc7f1d894ec30775d783dc7ed43b7d9334c73444cd2c89b6",
+        "experiments/data.py": "f88910d12dbc63f5c8d5a1bc79a8f45529425a9ae70e26bbed30115173705229",
+        "experiments/models.py": "869c2546a62832935e2210a6d70822ac96b4d122a5d605735f01a42339014335",
+        "experiments/run.py": "0303678a16bf0b7f850a76b5c593342fcafbc7da152f82b1f176bbaac26a6ef8",
+        "experiments/teacher.py": "e3f0eaff36f362fc492a8b575c5faddd1736ffe68b20dd707eca8c90471a4726",
+        "model/my_model.py": "3b924f6dabceee1bbc1b906ac9f05908a0d236ebf0eb369e454bc35ac3969144"
+      },
+      "all_observed_items": {
+        "n_items": 948,
+        "pearson": 0.9267353090863307,
+        "spearman": 0.9260807539462959
+      },
+      "reliable_items_n_ge_30": {
+        "n_items": 805,
+        "pearson": 0.9573090344568382,
+        "spearman": 0.9652619118182371
+      }
+    },
+    {
+      "suite": "round1-repeat",
+      "run": "warm-aligned-s2026",
+      "protocol": "warm",
+      "variant": "aligned",
+      "seed": 2026,
+      "checkpoint_sha256": "02922785b7bff28e3ad1edf364403d8d745f28440c54d388b0307e2c9b8e96f8",
+      "item_parameters_sha256": "5891e5b424b6c0feff097b858f51dd8d2788cd0326cb4e14c1096378d7f126e3",
+      "source_sha256": {
+        "experiments/__init__.py": "3bdf13ca7c082b6fbc7f1d894ec30775d783dc7ed43b7d9334c73444cd2c89b6",
+        "experiments/data.py": "f88910d12dbc63f5c8d5a1bc79a8f45529425a9ae70e26bbed30115173705229",
+        "experiments/models.py": "869c2546a62832935e2210a6d70822ac96b4d122a5d605735f01a42339014335",
+        "experiments/run.py": "0303678a16bf0b7f850a76b5c593342fcafbc7da152f82b1f176bbaac26a6ef8",
+        "experiments/teacher.py": "e3f0eaff36f362fc492a8b575c5faddd1736ffe68b20dd707eca8c90471a4726",
+        "model/my_model.py": "3b924f6dabceee1bbc1b906ac9f05908a0d236ebf0eb369e454bc35ac3969144"
+      },
+      "all_observed_items": {
+        "n_items": 948,
+        "pearson": 0.9294942091120713,
+        "spearman": 0.9295512270174461
+      },
+      "reliable_items_n_ge_30": {
+        "n_items": 805,
+        "pearson": 0.9569521746037726,
+        "spearman": 0.9648327006272497
+      }
+    },
+    {
+      "suite": "round1-repeat",
+      "run": "warm-aligned-s3407",
+      "protocol": "warm",
+      "variant": "aligned",
+      "seed": 3407,
+      "checkpoint_sha256": "839215edd3507b32918ef7eb9a90309c42b2e94de8f6ca5a0c42848a1567bfcd",
+      "item_parameters_sha256": "f2a63c2dd1299c0839f425dbd3cace17b312391aa12b36f67d69b10130270669",
+      "source_sha256": {
+        "experiments/__init__.py": "3bdf13ca7c082b6fbc7f1d894ec30775d783dc7ed43b7d9334c73444cd2c89b6",
+        "experiments/data.py": "f88910d12dbc63f5c8d5a1bc79a8f45529425a9ae70e26bbed30115173705229",
+        "experiments/models.py": "869c2546a62832935e2210a6d70822ac96b4d122a5d605735f01a42339014335",
+        "experiments/run.py": "0303678a16bf0b7f850a76b5c593342fcafbc7da152f82b1f176bbaac26a6ef8",
+        "experiments/teacher.py": "e3f0eaff36f362fc492a8b575c5faddd1736ffe68b20dd707eca8c90471a4726",
+        "model/my_model.py": "3b924f6dabceee1bbc1b906ac9f05908a0d236ebf0eb369e454bc35ac3969144"
+      },
+      "all_observed_items": {
+        "n_items": 948,
+        "pearson": 0.9305857161342075,
+        "spearman": 0.9297247229576745
+      },
+      "reliable_items_n_ge_30": {
+        "n_items": 805,
+        "pearson": 0.9585246495831998,
+        "spearman": 0.9652078820989063
+      }
+    },
+    {
+      "suite": "round1-s42",
+      "run": "warm-decoupled-s42",
+      "protocol": "warm",
+      "variant": "decoupled",
+      "seed": 42,
+      "checkpoint_sha256": "d75147a29be8fde7f0ddfddf320dde3b59e5449c2983fca8bc65750a3f96e660",
+      "item_parameters_sha256": "9eb1f211407ff85f8d8a658c293d698c0f236b35459be4f95a9f0dbfb25fcc78",
+      "source_sha256": {
+        "experiments/__init__.py": "3bdf13ca7c082b6fbc7f1d894ec30775d783dc7ed43b7d9334c73444cd2c89b6",
+        "experiments/data.py": "f88910d12dbc63f5c8d5a1bc79a8f45529425a9ae70e26bbed30115173705229",
+        "experiments/models.py": "869c2546a62832935e2210a6d70822ac96b4d122a5d605735f01a42339014335",
+        "experiments/run.py": "0303678a16bf0b7f850a76b5c593342fcafbc7da152f82b1f176bbaac26a6ef8",
+        "experiments/teacher.py": "e3f0eaff36f362fc492a8b575c5faddd1736ffe68b20dd707eca8c90471a4726",
+        "model/my_model.py": "3b924f6dabceee1bbc1b906ac9f05908a0d236ebf0eb369e454bc35ac3969144"
+      },
+      "all_observed_items": {
+        "n_items": 948,
+        "pearson": 0.8545808157198671,
+        "spearman": 0.8813630161584255
+      },
+      "reliable_items_n_ge_30": {
+        "n_items": 805,
+        "pearson": 0.8873096649627701,
+        "spearman": 0.9303129549108053
+      }
+    },
+    {
+      "suite": "round1-repeat",
+      "run": "warm-decoupled-s2026",
+      "protocol": "warm",
+      "variant": "decoupled",
+      "seed": 2026,
+      "checkpoint_sha256": "e25b341e53fab92f5c8e7586fbef7717f374f624e7525fc734989e8ce22041ca",
+      "item_parameters_sha256": "159c4bcba01edda87c7e9af6122a95fcd68a840e6b9e65a9cc2b45f2af5345fa",
+      "source_sha256": {
+        "experiments/__init__.py": "3bdf13ca7c082b6fbc7f1d894ec30775d783dc7ed43b7d9334c73444cd2c89b6",
+        "experiments/data.py": "f88910d12dbc63f5c8d5a1bc79a8f45529425a9ae70e26bbed30115173705229",
+        "experiments/models.py": "869c2546a62832935e2210a6d70822ac96b4d122a5d605735f01a42339014335",
+        "experiments/run.py": "0303678a16bf0b7f850a76b5c593342fcafbc7da152f82b1f176bbaac26a6ef8",
+        "experiments/teacher.py": "e3f0eaff36f362fc492a8b575c5faddd1736ffe68b20dd707eca8c90471a4726",
+        "model/my_model.py": "3b924f6dabceee1bbc1b906ac9f05908a0d236ebf0eb369e454bc35ac3969144"
+      },
+      "all_observed_items": {
+        "n_items": 948,
+        "pearson": 0.8577676049052162,
+        "spearman": 0.8889231813109828
+      },
+      "reliable_items_n_ge_30": {
+        "n_items": 805,
+        "pearson": 0.8868749599907712,
+        "spearman": 0.9302516229760245
+      }
+    },
+    {
+      "suite": "round1-repeat",
+      "run": "warm-decoupled-s3407",
+      "protocol": "warm",
+      "variant": "decoupled",
+      "seed": 3407,
+      "checkpoint_sha256": "14d77a937c12c23a93c39aa4c8f48b3bcd2ef8ad1f5bcb5091be95c23fef4d61",
+      "item_parameters_sha256": "307d7aded1e2fb52bdd70a2d4f8144d6424ef0e31bb8ff5baff5a208af928068",
+      "source_sha256": {
+        "experiments/__init__.py": "3bdf13ca7c082b6fbc7f1d894ec30775d783dc7ed43b7d9334c73444cd2c89b6",
+        "experiments/data.py": "f88910d12dbc63f5c8d5a1bc79a8f45529425a9ae70e26bbed30115173705229",
+        "experiments/models.py": "869c2546a62832935e2210a6d70822ac96b4d122a5d605735f01a42339014335",
+        "experiments/run.py": "0303678a16bf0b7f850a76b5c593342fcafbc7da152f82b1f176bbaac26a6ef8",
+        "experiments/teacher.py": "e3f0eaff36f362fc492a8b575c5faddd1736ffe68b20dd707eca8c90471a4726",
+        "model/my_model.py": "3b924f6dabceee1bbc1b906ac9f05908a0d236ebf0eb369e454bc35ac3969144"
+      },
+      "all_observed_items": {
+        "n_items": 948,
+        "pearson": 0.8517261793331562,
+        "spearman": 0.8807847730801028
+      },
+      "reliable_items_n_ge_30": {
+        "n_items": 805,
+        "pearson": 0.8833809173728432,
+        "spearman": 0.927252999035131
+      }
+    }
+  ],
+  "aggregates": [
+    {
+      "protocol": "cold",
+      "variant": "aligned",
+      "seeds": [
+        42,
+        2026,
+        3407
+      ],
+      "n_seeds": 3,
+      "all_observed_items": {
+        "n_items": 143,
+        "spearman": {
+          "mean": 0.4886499500855423,
+          "sample_sd": 0.0174509416917687,
+          "n_finite_seeds": 3
+        },
+        "pearson": {
+          "mean": 0.4965845234076541,
+          "sample_sd": 0.01489346078857749,
+          "n_finite_seeds": 3
+        }
+      },
+      "reliable_items_n_ge_30": {
+        "n_items": 120,
+        "spearman": {
+          "mean": 0.49796745144338733,
+          "sample_sd": 0.014574623855463487,
+          "n_finite_seeds": 3
+        },
+        "pearson": {
+          "mean": 0.504015985935335,
+          "sample_sd": 0.015430605013200233,
+          "n_finite_seeds": 3
+        }
+      }
+    },
+    {
+      "protocol": "cold",
+      "variant": "decoupled",
+      "seeds": [
+        42,
+        2026,
+        3407
+      ],
+      "n_seeds": 3,
+      "all_observed_items": {
+        "n_items": 143,
+        "spearman": {
+          "mean": 0.44118274717290246,
+          "sample_sd": 0.020270192039996728,
+          "n_finite_seeds": 3
+        },
+        "pearson": {
+          "mean": 0.4533346903107183,
+          "sample_sd": 0.016049834465154785,
+          "n_finite_seeds": 3
+        }
+      },
+      "reliable_items_n_ge_30": {
+        "n_items": 120,
+        "spearman": {
+          "mean": 0.4635368196865524,
+          "sample_sd": 0.018246177404728732,
+          "n_finite_seeds": 3
+        },
+        "pearson": {
+          "mean": 0.4689191646644269,
+          "sample_sd": 0.016546009885616723,
+          "n_finite_seeds": 3
+        }
+      }
+    },
+    {
+      "protocol": "warm",
+      "variant": "aligned",
+      "seeds": [
+        42,
+        2026,
+        3407
+      ],
+      "n_seeds": 3,
+      "all_observed_items": {
+        "n_items": 948,
+        "spearman": {
+          "mean": 0.9284522346404721,
+          "sample_sd": 0.0020555937639662853,
+          "n_finite_seeds": 3
+        },
+        "pearson": {
+          "mean": 0.9289384114442031,
+          "sample_sd": 0.001984462621036352,
+          "n_finite_seeds": 3
+        }
+      },
+      "reliable_items_n_ge_30": {
+        "n_items": 805,
+        "spearman": {
+          "mean": 0.9651008315147976,
+          "sample_sd": 0.0002337743191321425,
+          "n_finite_seeds": 3
+        },
+        "pearson": {
+          "mean": 0.9575952862146035,
+          "sample_sd": 0.0008243933780962711,
+          "n_finite_seeds": 3
+        }
+      }
+    },
+    {
+      "protocol": "warm",
+      "variant": "decoupled",
+      "seeds": [
+        42,
+        2026,
+        3407
+      ],
+      "n_seeds": 3,
+      "all_observed_items": {
+        "n_items": 948,
+        "spearman": {
+          "mean": 0.8836903235165038,
+          "sample_sd": 0.00454100118777098,
+          "n_finite_seeds": 3
+        },
+        "pearson": {
+          "mean": 0.854691533319413,
+          "sample_sd": 0.003022234194403547,
+          "n_finite_seeds": 3
+        }
+      },
+      "reliable_items_n_ge_30": {
+        "n_items": 805,
+        "spearman": {
+          "mean": 0.9292725256406537,
+          "sample_sd": 0.0017492301690647182,
+          "n_finite_seeds": 3
+        },
+        "pearson": {
+          "mean": 0.8858551807754615,
+          "sample_sd": 0.0021537703318418866,
+          "n_finite_seeds": 3
+        }
+      }
+    }
+  ]
+}
