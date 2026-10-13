@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "checked_at_utc": "2026-10-13T07:45:22.4261616Z",
+  "checked_at_utc": "2026-10-13T10:29:13.2986661Z",
   "provenance": {
     "original_hash_manifest": "../dlkt-research-original-hashes.json",
     "retained_hash_manifest": "../dlkt-best-806453/manifest.json:files_sha256",
@@ -9,7 +9,9 @@
     "comparison_epoch_logs": [
       "runs/round1-s42/warm-original-s42/epochs.jsonl",
       "runs/transformer-irt-20261013/warm-original-s42/epochs.jsonl"
-    ]
+    ],
+    "completed_suite_report": "reports/transformer-irt.json",
+    "completed_suite_report_sha256": "98c2efb13ee55c9f04403cdf7b19c87ff6f1e2a7f89d819bb33d48ab1f5df6cc"
   },
   "original_dlkt": {
     "files_checked": 15,
@@ -40,5 +42,14 @@
     "excludes": "Wall time and all test metrics",
     "interpretation": "These first two epoch metrics agree exactly; this is not a claim of general bitwise training determinism."
   },
-  "scope": "Read-only verification of preserved original and retained best package; no preserved files rewritten. This report is the only file created by this audit."
+  "scope": "Read-only verification of preserved original, retained best package, prior experiment source and completed Transformer source/data. No preserved files rewritten. This preservation report is the only file modified by this final audit.",
+  "completed_training_source": {
+    "files_checked": 9,
+    "mismatches": []
+  },
+  "completed_training_data": {
+    "files_checked": 2,
+    "mismatches": []
+  },
+  "verification_stage": "After all 18 Transformer training runs completed and passed the independent full-suite audit."
 }

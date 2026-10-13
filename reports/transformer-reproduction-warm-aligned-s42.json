@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "verification": "saved_checkpoint_test_inference_only",
+  "created_at_utc": "2026-10-13T10:28:08.251390+00:00",
+  "run_dir": "/mnt/d/doc/knowledge_trace_graduation_project/dlkt-research/runs/transformer-irt-20261013/warm-aligned-s42",
+  "data_root": "/mnt/d/doc/knowledge_trace_graduation_project/dlkt-research/dataset/NIPS2020",
+  "protocol": "warm",
+  "variant": "aligned",
+  "seed": 42,
+  "best_epoch": 23,
+  "batch_size": 128,
+  "sequence_length": 201,
+  "checkpoint_sha256": "dcc0ecffbeb384c1defb1417d3e2b5408a24ed1603b841352f5a2ed913007375",
+  "config_file_sha256": "506e4f5c71e206a99c17f257bfd1ba01bb656b0d9e8d8cc88a6c22a1e12f8df0",
+  "summary_file_sha256": "b32eb8391b5d9f8544693e93f436136cc9d7d3660b58a319fa997bd99abe7a54",
+  "test_predictions_file_sha256": "2ef10da799e8934fdeeb23ca0e36ab4c1894ad4d7e441794a7024f2cd6482e94",
+  "data_sha256": {
+    "used.txt": "f25f6db4a9ff2eae6f11e47a5b4b1181e0f7a65b616e6eb6dd14d105f9270de2",
+    "used.json": "4ab74e5fc1108f259d7a04deb4f2b0740762df01c1c7d333cc85761dd894aea0"
+  },
+  "source_sha256": {
+    "experiments/__init__.py": "3bdf13ca7c082b6fbc7f1d894ec30775d783dc7ed43b7d9334c73444cd2c89b6",
+    "experiments/data.py": "f88910d12dbc63f5c8d5a1bc79a8f45529425a9ae70e26bbed30115173705229",
+    "experiments/models.py": "869c2546a62832935e2210a6d70822ac96b4d122a5d605735f01a42339014335",
+    "experiments/run.py": "0303678a16bf0b7f850a76b5c593342fcafbc7da152f82b1f176bbaac26a6ef8",
+    "experiments/teacher.py": "e3f0eaff36f362fc492a8b575c5faddd1736ffe68b20dd707eca8c90471a4726",
+    "transformer_experiments/__init__.py": "7dc7a7f4c015ef117c700db77429ac9bef00349a35d0c6f4e2d52a07f1601d68",
+    "transformer_experiments/models.py": "c428c7343c65de3ae874bd896a6bd022060f079253f84c1385d27bfbe2e5d8ba",
+    "transformer_experiments/run.py": "b7e62d278ba8a72a4f61836bfe1df72583fa5f65fc6b031d53cb437f196fe891",
+    "model/my_model.py": "3b924f6dabceee1bbc1b906ac9f05908a0d236ebf0eb369e454bc35ac3969144"
+  },
+  "protocol_sha256": "45502c7c3ac28531874ebf11336749b9f9aada2f81d10449e90ba36102f63637",
+  "audits": {
+    "source_hashes_match": true,
+    "data_hashes_match": true,
+    "protocol_hash_matches": true,
+    "checkpoint_config_matches": true,
+    "checkpoint_hash_matches": true,
+    "test_target_identities_match": true,
+    "stored_predictions_match_summary_metrics": true,
+    "original_artifacts_modified": false
+  },
+  "predictions": {
+    "count": 415735,
+    "exact_equal": true,
+    "bitwise_equal": true,
+    "different_count": 0,
+    "max_absolute_difference": 0.0,
+    "mean_absolute_difference": 0.0,
+    "reference_dtype": "float32",
+    "reproduced_dtype": "float32"
+  },
+  "reference_metrics": {
+    "auc": 0.7935187020535148,
+    "acc": 0.7240044740038727,
+    "nll": 0.5395028917071751,
+    "brier": 0.18283398632496153,
+    "ece15": 0.004392755357397958,
+    "count": 415735
+  },
+  "reproduced_metrics": {
+    "auc": 0.7935187020535148,
+    "acc": 0.7240044740038727,
+    "nll": 0.5395028917071751,
+    "brier": 0.18283398632496153,
+    "ece15": 0.004392755357397958,
+    "count": 415735
+  },
+  "metric_differences": {
+    "auc": 0.0,
+    "acc": 0.0,
+    "nll": 0.0,
+    "brier": 0.0,
+    "ece15": 0.0
+  },
+  "environment": {
+    "python": "3.12.3",
+    "torch": "2.9.1+rocm7.2.1.gitff65f5bc",
+    "numpy": "1.26.4",
+    "device": "cuda",
+    "gpu": "AMD Radeon RX 9070 XT",
+    "deterministic_algorithms": false
+  },
+  "seconds": 13.703926459000286,
+  "scope": "Checks saved-checkpoint inference. Does not repeat optimization or establish bitwise training reproducibility.",
+  "interpretation_constraints": [
+    "The original Transformer/AKT, 3PL output and item-dependent interaction gates are retained.",
+    "AKT ability remains conditioned on the current question; static item parameters do not establish full psychometric disentanglement.",
+    "Training seeds use one fixed cold-item split. The retained 80.6453% ensemble uses a different evaluation protocol."
+  ]
+}
