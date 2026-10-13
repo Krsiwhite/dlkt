@@ -29,6 +29,10 @@ Direction 1's controlled contrast is `semantic_mlp` versus `decoupled`. `origina
 - Two-batch, one-epoch smoke runs validate execution only; their metrics are excluded from results.
 - No ensemble, test-time mixing, new semantic embeddings, pretrained language-model fine-tuning, or extra architecture search in this round.
 
+## Independent item-parameter diagnostic
+
+After the planned models finish, estimate a separate Rasch reference from held-out test students for descriptive parameter evaluation only. In the cold protocol, fit this reference on their train-item and test-cold-item responses, excluding validation-cold items, then compare semantic difficulty rankings on the 143 test-cold items. These response-derived reference values are never model inputs, alignment supervision, checkpoint-selection criteria, or hyperparameter-selection criteria. Report Spearman and Pearson correlations on all observed evaluation items, with a clearly labelled optional >=30-response subset. The reference is a noisy, model-based proxy; correlation does not establish true psychological difficulty. This diagnostic was specified before the first cold-model test result was available.
+
 ## Invocation (existing WSL environment)
 
 ```sh
