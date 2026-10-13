@@ -48,11 +48,15 @@
 python -m unittest discover -s tests -v
 python -u -m experiments.run --output runs/round1-s42
 python -u -m experiments.run --output runs/round1-repeat --variants decoupled aligned --seeds 3407 2026
+python tools/summarize_experiments.py --roots runs/round1-s42 runs/round1-repeat --output reports/round1
+python tools/reproduce_experiment.py --run-dir runs/round1-s42/warm-aligned-s42 --data-root dataset/NIPS2020 --device cuda
 ```
 
 在其他机器使用 Python 3.10 及以上、NumPy、与硬件适配的 PyTorch 即可运行实验模块。仓库原有 `pyproject.toml` 是历史预处理环境说明，不是本实验的完整环境锁；具体已运行版本保存在每轮 `environment.json`。CPU 可用于性质测试和推理，完整训练建议用 GPU。
 
 每次训练到达最佳验证 AUC 时保存 `best.pt`，每轮保存 `latest.pt`。中断运行不会自动混入新实验；不完整输出目录会拒绝覆盖，需要使用新输出目录。`latest.pt` 保留模型、优化器与调度器状态，但当前未提供严格随机状态恢复的续训功能。
+
+跨种子实验复用第一组的 `warm-teacher.pt`、`cold-teacher.pt`，确保辅助监督目标完全一致。复现工具先核对数据、代码、配置和权重指纹，再加载已有权重推理；它验证的是权重推理复现，不是完整重训复现。汇总工具只读取已完成的实验，并逐项核对配对比较的测试目标。
 
 ## 安全与保留
 
