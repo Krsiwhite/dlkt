@@ -3,3 +3,4 @@
 *.yaml text eol=lf
 dataset/** -text
 model/my_model.py -text
+reports/transformer*.json -text
