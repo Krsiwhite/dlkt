@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "checked_at_utc": "2026-10-13T07:45:22.4261616Z",
+  "provenance": {
+    "original_hash_manifest": "../dlkt-research-original-hashes.json",
+    "retained_hash_manifest": "../dlkt-best-806453/manifest.json:files_sha256",
+    "retained_manifest_checksum": "../dlkt-best-806453/manifest.sha256",
+    "prior_source_hashes": "runs/round1-s42/warm-original-s42/config.json:source_sha256",
+    "comparison_epoch_logs": [
+      "runs/round1-s42/warm-original-s42/epochs.jsonl",
+      "runs/transformer-irt-20261013/warm-original-s42/epochs.jsonl"
+    ]
+  },
+  "original_dlkt": {
+    "files_checked": 15,
+    "mismatches": []
+  },
+  "retained_806453": {
+    "files_checked": 124,
+    "mismatches": []
+  },
+  "retained_manifest_checksum_matches": true,
+  "preserved_prior_experiment_source": {
+    "files_checked": 6,
+    "mismatches": []
+  },
+  "warm_original_seed42_first_epochs": {
+    "comparisons": [
+      {
+        "epoch": 1,
+        "metric_fields_compared": 12,
+        "differences": []
+      },
+      {
+        "epoch": 2,
+        "metric_fields_compared": 12,
+        "differences": []
+      }
+    ],
+    "excludes": "Wall time and all test metrics",
+    "interpretation": "These first two epoch metrics agree exactly; this is not a claim of general bitwise training determinism."
+  },
+  "scope": "Read-only verification of preserved original and retained best package; no preserved files rewritten. This report is the only file created by this audit."
+}
